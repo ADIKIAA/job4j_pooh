@@ -71,8 +71,8 @@ class TopicSchemaTest {
         topic.publish(new Message("city", "11"));
         var thread = new Thread(topic);
         thread.start();
-        countFirst.await();
         countSecond.await();
+        countFirst.await();
         thread.interrupt();
         assertThat(outFirst).containsOnly("23", "20");
         assertThat(outSecond).containsOnly("23", "20");
